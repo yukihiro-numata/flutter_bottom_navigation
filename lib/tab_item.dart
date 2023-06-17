@@ -14,5 +14,5 @@ const Map<TabItem, Color> tabColor = {
   TabItem.blue: Colors.blue,
 };
 
-String activeTabName(TabItem tabItem) => tabName[tabItem] ?? '';
-Color activeTabColor(TabItem tabItem) => tabColor[tabItem] ?? Colors.red;
+String getTabName(TabItem tabItem) => tabName[tabItem] ?? '';
+Color getTabColor(TabItem tabItem) => tabColor[tabItem] ?? Colors.red;

@@ -14,7 +14,7 @@ class BottomNavigation extends StatelessWidget {
     return BottomNavigationBarItem(
       icon: Icon(
         Icons.layers,
-        color: currentTab == tabItem ? activeTabColor(tabItem) : Colors.grey,
+        color: currentTab == tabItem ? getTabColor(tabItem) : Colors.grey,
       ),
       label: tabName[tabItem],
     );
@@ -25,7 +25,7 @@ class BottomNavigation extends StatelessWidget {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       currentIndex: TabItem.values.indexOf(currentTab),
-      selectedItemColor: activeTabColor(currentTab),
+      selectedItemColor: getTabColor(currentTab),
       items: [
         _buildItem(TabItem.red),
         _buildItem(TabItem.green),

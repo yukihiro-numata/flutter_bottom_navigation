@@ -23,8 +23,8 @@ class AppState extends State<App> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ColorDetailPage(
-          color: activeTabColor(_currentTab),
-          title: activeTabName(_currentTab),
+          color: getTabColor(_currentTab),
+          title: getTabName(_currentTab),
         ),
       ),
     );
@@ -32,7 +32,7 @@ class AppState extends State<App> {
 
   Widget _buildBody() {
     return Container(
-      color: activeTabColor(_currentTab),
+      color: getTabColor(_currentTab),
       alignment: Alignment.center,
       child: TextButton(
         onPressed: _push,
