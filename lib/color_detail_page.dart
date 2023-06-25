@@ -5,16 +5,21 @@ class ColorDetailPage extends StatelessWidget {
     super.key,
     required this.color,
     required this.title,
+    required this.materialIndex,
   });
-  final Color color;
+  final MaterialColor color;
   final String title;
+  final int materialIndex;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: color,
-        title: Text(title),
+        title: Text('$title[$materialIndex]'),
+      ),
+      body: Container(
+        color: color[materialIndex],
       ),
     );
   }

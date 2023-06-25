@@ -8,11 +8,11 @@ const Map<TabItem, String> tabName = {
   TabItem.blue: 'blue',
 };
 
-const Map<TabItem, Color> tabColor = {
+const Map<TabItem, MaterialColor> tabColor = {
   TabItem.red: Colors.red,
   TabItem.green: Colors.green,
   TabItem.blue: Colors.blue,
 };
 
 String getTabName(TabItem tabItem) => tabName[tabItem] ?? '';
-Color getTabColor(TabItem tabItem) => tabColor[tabItem] ?? Colors.red;
+MaterialColor getTabColor(TabItem tabItem) => tabColor[tabItem] ?? Colors.red;

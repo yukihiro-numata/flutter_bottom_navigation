@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bottom_navigation/bottom_navigation.dart';
-import 'package:flutter_bottom_navigation/color_detail_page.dart';
 import 'package:flutter_bottom_navigation/tab_item.dart';
+import 'package:flutter_bottom_navigation/tab_navigator.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -11,6 +11,11 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> {
+  final _navigatorKeys = {
+    TabItem.red: GlobalKey<NavigatorState>(),
+    TabItem.green: GlobalKey<NavigatorState>(),
+    TabItem.blue: GlobalKey<NavigatorState>(),
+  };
   var _currentTab = TabItem.red;
 
   void _selectTab(TabItem tabItem) {
@@ -19,30 +24,12 @@ class AppState extends State<App> {
     });
   }
 
-  void _push() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ColorDetailPage(
-          color: getTabColor(_currentTab),
-          title: getTabName(_currentTab),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBody() {
-    return Container(
-      color: getTabColor(_currentTab),
-      alignment: Alignment.center,
-      child: TextButton(
-        onPressed: _push,
-        child: const Text(
-          'PUSH',
-          style: TextStyle(
-            fontSize: 32.0,
-            color: Colors.white,
-          ),
-        ),
+  Widget _buildOffstageNavigator(TabItem tabItem) {
+    return Offstage(
+      offstage: _currentTab != tabItem,
+      child: TabNavigator(
+        navigatorKey: _navigatorKeys[tabItem]!,
+        tabItem: tabItem,
       ),
     );
   }
@@ -50,7 +37,13 @@ class AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildBody(),
+      body: Stack(
+        children: [
+          _buildOffstageNavigator(TabItem.red),
+          _buildOffstageNavigator(TabItem.green),
+          _buildOffstageNavigator(TabItem.blue),
+        ],
+      ),
       bottomNavigationBar: BottomNavigation(
         currentTab: _currentTab,
         onSelectTab: _selectTab,
