@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bottom_navigation/bottom_navigation.dart';
 import 'package:flutter_bottom_navigation/tab_item.dart';
 import 'package:flutter_bottom_navigation/tab_navigator.dart';
+import 'package:get/get.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -12,9 +13,9 @@ class App extends StatefulWidget {
 
 class AppState extends State<App> {
   final _navigatorKeys = {
-    TabItem.red: GlobalKey<NavigatorState>(),
-    TabItem.green: GlobalKey<NavigatorState>(),
-    TabItem.blue: GlobalKey<NavigatorState>(),
+    TabItem.red: Get.nestedKey(TabItem.red.index),
+    TabItem.green: Get.nestedKey(TabItem.green.index),
+    TabItem.blue: Get.nestedKey(TabItem.blue.index),
   };
   var _currentTab = TabItem.red;
 
